@@ -1,9 +1,13 @@
 package com.deviigorsf.domain.usuario;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
+@NoArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,14 +16,8 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private ERole name;
-
-    public Role() {
-
-    }
-
-    public Role(ERole name) {
-        this.name = name;
-    }
+    @ManyToMany
+    private List<Usuario> UsuarioList;
 
     public Integer getId() {
         return id;
